@@ -1,0 +1,31 @@
+﻿@model IEnumerable<TechnicalAnalysis.Models.DigitalContractModel>
+@{
+    ViewData["Title"] = "Download";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Download Contract</h1>
+    <p>Welcome to the @ViewData["Title"] page.</p>
+
+</div>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Id)</th>
+        <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+        <th>@Html.DisplayNameFor(model => model.LastName)</th>
+        <th>@Html.DisplayNameFor(model => model.Email)</th>
+        <th>@Html.DisplayNameFor(model => model.Age)</th>
+        <th>@Html.DisplayNameFor(model => model.OnlineSignature)</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(mItem => item.Id)</td>
+            <td>@Html.DisplayFor(mItem => item.FirstName)</td>
+            <td>@Html.DisplayFor(mItem => item.LastName)</td>
+            <td>@Html.DisplayFor(mItem => item.Email)</td>
+            <td>@Html.DisplayFor(mItem => item.Age)</td>
+            <td>@Html.DisplayFor(mItem => item.OnlineSignature)</td>
+        </tr>
+    }
+</table>
