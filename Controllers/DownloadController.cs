@@ -30,10 +30,10 @@ namespace TechnicalAnalysis.Controllers
             return View(_digitalContractModels());
         }
 
-        // GET: DownloadController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Details(int Id)
         {
-            return View();
+            var contract = _digitalContractModels().FirstOrDefault(item => item.Id.Equals(Id));
+            return View(contract);
         }
 
         // GET: DownloadController/Create

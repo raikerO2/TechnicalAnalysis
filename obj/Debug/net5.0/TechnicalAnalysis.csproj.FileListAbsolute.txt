@@ -115,3 +115,4 @@ C:\Users\rares\Desktop\TechnicalAnalysis\TechnicalAnalysis\bin\Debug\net5.0\zh-H
 C:\Users\rares\Desktop\TechnicalAnalysis\TechnicalAnalysis\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\rares\Desktop\TechnicalAnalysis\TechnicalAnalysis\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\rares\Desktop\TechnicalAnalysis\TechnicalAnalysis\obj\Debug\net5.0\Razor\Views\Upload\Upload.cshtml.g.cs
+C:\Users\rares\Desktop\TechnicalAnalysis\TechnicalAnalysis\obj\Debug\net5.0\Razor\Views\Download\Details.cshtml.g.cs

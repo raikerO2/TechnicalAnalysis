@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Core\Factory\" />
     <Folder Include="Core\Source\" />
   </ItemGroup>
 

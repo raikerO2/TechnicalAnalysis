@@ -11,7 +11,7 @@ namespace TechnicalAnalysis.Core.Factory
         {
             return new DigitalContractModel
             {
-                Id = Guid.NewGuid(),
+                Id = 01,
                 FirstName = "John",
                 LastName = "Doe",
                 Age = 25,

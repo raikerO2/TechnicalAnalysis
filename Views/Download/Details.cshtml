@@ -1,0 +1,13 @@
+﻿@model DigitalContractModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@Html.DisplayFor(name => name.FirstName) @Html.DisplayFor(name => name.LastName)</h1>
+
+    <p>Id: @Html.DisplayFor(item => item.Id)</p>
+    <p>Email: @Html.DisplayFor(item => item.Email)</p>
+    <p>Age: @Html.DisplayFor(item => item.Age)</p>
+    <p>Online Signature: @Html.DisplayFor(item => item.OnlineSignature)</p>
+</div>
