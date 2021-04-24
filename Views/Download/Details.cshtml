@@ -4,10 +4,32 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">@Html.DisplayFor(name => name.FirstName) @Html.DisplayFor(name => name.LastName)</h1>
-
-    <p>Id: @Html.DisplayFor(item => item.Id)</p>
-    <p>Email: @Html.DisplayFor(item => item.Email)</p>
-    <p>Age: @Html.DisplayFor(item => item.Age)</p>
-    <p>Online Signature: @Html.DisplayFor(item => item.OnlineSignature)</p>
+    <h1 class="display-4">@Html.DisplayFor(name => name.FirstName)'s details</h1>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <td>@Html.DisplayFor(item => item.Id)</td>
+        </tr>
+        <tr>
+            <th>First Name</th>
+            <td>@Html.DisplayFor(name => name.FirstName)</td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td>@Html.DisplayFor(name => name.LastName)</td>
+        </tr>
+        <tr>
+            <th>Age</th>
+            <td>@Html.DisplayFor(item => item.Age)</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>@Html.DisplayFor(item => item.Email)</td>
+        </tr>
+        <tr>
+            <th>Online Signature</th>
+            <td>@Html.DisplayFor(item => item.OnlineSignature)</td>
+        </tr>
+    </table>
+    @Html.ActionLink("Back", "Download")
 </div>

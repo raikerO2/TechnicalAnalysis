@@ -12,27 +12,53 @@ namespace TechnicalAnalysis.Controllers
     public class DownloadController : Controller
     {
         // GET: DownloadController
+
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
-        static List<DigitalContractModel> _digitalContractModels()
+        static List<DigitalContractModel> _digitalContractModels = new List<DigitalContractModel>()
         {
-            return new List<DigitalContractModel> {
-                DummyData.DummyDigitalContract(),
-                DummyData.DummyDigitalContract(),
-                DummyData.DummyDigitalContract(),
-            };
-        }
+            new DigitalContractModel {
+              Id = 01,
+                FirstName = "Mark",
+                LastName = "Anthony",
+                Age = 25,
+                Email = "example@example.com",
+                OnlineSignature = "AA1101"
+            },
+            new DigitalContractModel
+            {
+                 Id = 02,
+                FirstName = "Fox",
+                LastName = "Mulder",
+                Age = 25,
+                Email = "example@example.com",
+                OnlineSignature = "AA1102"
+            },
+                new DigitalContractModel
+            {
+                 Id = 03,
+                FirstName = "John",
+                LastName = "Cena",
+                Age = 25,
+                Email = "example@example.com",
+                OnlineSignature = "AA1103"
+            },
+        };
 
+        
+        [HttpGet]
         public IActionResult Download()
         {
-            return View(_digitalContractModels());
+            return View(_digitalContractModels);
         }
 
+        [HttpGet]
         public IActionResult Details(int Id)
         {
-            var contract = _digitalContractModels().FirstOrDefault(item => item.Id.Equals(Id));
+            var contract = _digitalContractModels.FirstOrDefault(item => item.Id.Equals(Id));
             return View(contract);
         }
 
@@ -57,10 +83,21 @@ namespace TechnicalAnalysis.Controllers
             }
         }
 
-        // GET: DownloadController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpPost]
+        public IActionResult Modify(DigitalContractModel contract)
         {
-            return View();
+            var oldContract = _digitalContractModels.FirstOrDefault(x => x.Id.Equals(contract.Id));
+            var indexOf = _digitalContractModels.IndexOf(oldContract);
+
+            _digitalContractModels[indexOf] = contract;
+            return View(contract);
+        }
+
+        [HttpGet]
+        public IActionResult Modify(int Id)
+        {
+            var contract = _digitalContractModels.FirstOrDefault(item => item.Id.Equals(Id));
+            return View(contract);
         }
 
         // POST: DownloadController/Edit/5
