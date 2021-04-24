@@ -11,8 +11,6 @@ namespace TechnicalAnalysis.Controllers
 {
     public class DownloadController : Controller
     {
-        // GET: DownloadController
-
         [HttpGet]
         public ActionResult Index()
         {
@@ -62,13 +60,11 @@ namespace TechnicalAnalysis.Controllers
             return View(contract);
         }
 
-        // GET: DownloadController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: DownloadController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -90,7 +86,7 @@ namespace TechnicalAnalysis.Controllers
             var indexOf = _digitalContractModels.IndexOf(oldContract);
 
             _digitalContractModels[indexOf] = contract;
-            return View(contract);
+            return View("Download",_digitalContractModels);
         }
 
         [HttpGet]
@@ -99,41 +95,21 @@ namespace TechnicalAnalysis.Controllers
             var contract = _digitalContractModels.FirstOrDefault(item => item.Id.Equals(Id));
             return View(contract);
         }
-
-        // POST: DownloadController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        
+        [HttpGet]
+        public IActionResult Delete(int Id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var contract = _digitalContractModels.Find(x => x.Id.Equals(Id));
+            return View(contract);
         }
 
-        // GET: DownloadController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: DownloadController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        [ActionName("Delete")]
+        public IActionResult DeleteContract(int Id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var contract = _digitalContractModels.Find(x => x.Id.Equals(Id));
+            _digitalContractModels.Remove(contract);
+            return View("Download",_digitalContractModels);
         }
     }
 }
