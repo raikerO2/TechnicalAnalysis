@@ -8,6 +8,9 @@
     <p>Welcome to the @ViewData["Title"] page.</p>
 
 </div>
+<form style="padding: 10px;" asp-action ="New" method="get">
+    <input type="submit" value="Create" class="btn btn-danger" style="background-color: green; border-color: green;"/>
+</form>
 <table class="table">
     <tr>
         <th>@Html.DisplayNameFor(model => model.Id)</th>
@@ -27,9 +30,9 @@
             <td>@Html.DisplayFor(mItem => item.Age)</td>
             <td>@Html.DisplayFor(mItem => item.OnlineSignature)</td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) | 
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Modify", "Modify", new { id = item.Id }) |
-                @Html.ActionLink("Delete","Delete", new {id = item.Id})
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
     }

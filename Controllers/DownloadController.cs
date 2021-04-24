@@ -60,24 +60,6 @@ namespace TechnicalAnalysis.Controllers
             return View(contract);
         }
 
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         [HttpPost]
         public IActionResult Modify(DigitalContractModel contract)
@@ -95,12 +77,35 @@ namespace TechnicalAnalysis.Controllers
             var contract = _digitalContractModels.FirstOrDefault(item => item.Id.Equals(Id));
             return View(contract);
         }
+
+        [HttpPost]
+        public IActionResult Create()
+        {
+            return View();
+        }
         
         [HttpGet]
         public IActionResult Delete(int Id)
         {
             var contract = _digitalContractModels.Find(x => x.Id.Equals(Id));
             return View(contract);
+        }
+
+        [HttpGet]
+        public IActionResult New()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ActionName("New")]
+        public IActionResult CreateNew(DigitalContractModel contract)
+        {
+            var numberOfContracts = _digitalContractModels.Count();
+            contract.Id = numberOfContracts + 1;
+
+            _digitalContractModels.Add(contract);
+            return View("Download",_digitalContractModels);
         }
 
         [HttpPost]

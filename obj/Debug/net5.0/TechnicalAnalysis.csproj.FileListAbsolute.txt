@@ -118,3 +118,4 @@ C:\Users\rares\Desktop\TechnicalAnalysis\TechnicalAnalysis\obj\Debug\net5.0\Razo
 C:\Users\rares\Desktop\TechnicalAnalysis\TechnicalAnalysis\obj\Debug\net5.0\Razor\Views\Download\Details.cshtml.g.cs
 C:\Users\rares\Desktop\TechnicalAnalysis\TechnicalAnalysis\obj\Debug\net5.0\Razor\Views\Download\Modify.cshtml.g.cs
 C:\Users\rares\Desktop\TechnicalAnalysis\TechnicalAnalysis\obj\Debug\net5.0\Razor\Views\Download\Delete.cshtml.g.cs
+C:\Users\rares\Desktop\TechnicalAnalysis\TechnicalAnalysis\obj\Debug\net5.0\Razor\Views\Download\New.cshtml.g.cs
