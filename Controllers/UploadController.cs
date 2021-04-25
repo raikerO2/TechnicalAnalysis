@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using TechnicalAnalysis.Models;
 
@@ -22,7 +24,21 @@ namespace TechnicalAnalysis.Controllers
         [HttpPost]
         public async Task<IActionResult> Upload(List<IFormFile> files)
         {
-            return Ok();
+            if(files.FirstOrDefault().ContentType == "application/json")
+            {
+                string fileContent = null;
+                using (var reader = new StreamReader(files.FirstOrDefault().OpenReadStream()))
+                {
+                    fileContent = reader.ReadToEnd();
+                }
+
+                var result = JsonConvert.DeserializeObject<DigitalContractModel>(fileContent);
+                SharedModels._digitalContractModels.Add(result);
+
+                return View("Uploaded");
+            }
+
+            return View("Error422");
         }
     }
 }

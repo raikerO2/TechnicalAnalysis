@@ -9,14 +9,9 @@ using TechnicalAnalysis.Models;
 
 namespace TechnicalAnalysis.Controllers
 {
-    public class DownloadController : Controller
+    public static class SharedModels
     {
-        [HttpGet]
-        public ActionResult Index()
-        {
-            return View();
-        }
-        static List<DigitalContractModel> _digitalContractModels = new List<DigitalContractModel>()
+        public static List<DigitalContractModel> _digitalContractModels = new List<DigitalContractModel>()
         {
             new DigitalContractModel {
               Id = 01,
@@ -45,18 +40,27 @@ namespace TechnicalAnalysis.Controllers
                 OnlineSignature = "AA1103"
             },
         };
+    }
+    public class DownloadController : Controller
+    {
+        [HttpGet]
+        public ActionResult Index()
+        {
+            return View();
+        }
+        
 
         
         [HttpGet]
         public IActionResult Download()
         {
-            return View(_digitalContractModels);
+            return View(SharedModels._digitalContractModels);
         }
 
         [HttpGet]
         public IActionResult Details(int Id)
         {
-            var contract = _digitalContractModels.FirstOrDefault(item => item.Id.Equals(Id));
+            var contract = SharedModels._digitalContractModels.FirstOrDefault(item => item.Id.Equals(Id));
             return View(contract);
         }
 
@@ -64,17 +68,17 @@ namespace TechnicalAnalysis.Controllers
         [HttpPost]
         public IActionResult Modify(DigitalContractModel contract)
         {
-            var oldContract = _digitalContractModels.FirstOrDefault(x => x.Id.Equals(contract.Id));
-            var indexOf = _digitalContractModels.IndexOf(oldContract);
+            var oldContract = SharedModels._digitalContractModels.FirstOrDefault(x => x.Id.Equals(contract.Id));
+            var indexOf = SharedModels._digitalContractModels.IndexOf(oldContract);
 
-            _digitalContractModels[indexOf] = contract;
-            return View("Download",_digitalContractModels);
+            SharedModels._digitalContractModels[indexOf] = contract;
+            return View("Download", SharedModels._digitalContractModels);
         }
 
         [HttpGet]
         public IActionResult Modify(int Id)
         {
-            var contract = _digitalContractModels.FirstOrDefault(item => item.Id.Equals(Id));
+            var contract = SharedModels._digitalContractModels.FirstOrDefault(item => item.Id.Equals(Id));
             return View(contract);
         }
 
@@ -87,7 +91,7 @@ namespace TechnicalAnalysis.Controllers
         [HttpGet]
         public IActionResult Delete(int Id)
         {
-            var contract = _digitalContractModels.Find(x => x.Id.Equals(Id));
+            var contract = SharedModels._digitalContractModels.Find(x => x.Id.Equals(Id));
             return View(contract);
         }
 
@@ -101,20 +105,20 @@ namespace TechnicalAnalysis.Controllers
         [ActionName("New")]
         public IActionResult CreateNew(DigitalContractModel contract)
         {
-            var numberOfContracts = _digitalContractModels.Count();
+            var numberOfContracts = SharedModels._digitalContractModels.Count();
             contract.Id = numberOfContracts + 1;
 
-            _digitalContractModels.Add(contract);
-            return View("Download",_digitalContractModels);
+            SharedModels._digitalContractModels.Add(contract);
+            return View("Download", SharedModels._digitalContractModels);
         }
 
         [HttpPost]
         [ActionName("Delete")]
         public IActionResult DeleteContract(int Id)
         {
-            var contract = _digitalContractModels.Find(x => x.Id.Equals(Id));
-            _digitalContractModels.Remove(contract);
-            return View("Download",_digitalContractModels);
+            var contract = SharedModels._digitalContractModels.Find(x => x.Id.Equals(Id));
+            SharedModels._digitalContractModels.Remove(contract);
+            return View("Download", SharedModels._digitalContractModels);
         }
     }
 }
