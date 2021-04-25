@@ -120,5 +120,15 @@ namespace TechnicalAnalysis.Controllers
             SharedModels._digitalContractModels.Remove(contract);
             return View("Download", SharedModels._digitalContractModels);
         }
+
+        [HttpGet]
+        public IActionResult DownloadFile(int Id)
+        {
+            DigitalContractModel contract = SharedModels._digitalContractModels.Find(x => x.Id.Equals(Id));
+
+            var serializedContract = Newtonsoft.Json.JsonConvert.SerializeObject(contract);
+
+            return Ok(serializedContract);
+        }
     }
 }
