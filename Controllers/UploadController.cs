@@ -24,17 +24,19 @@ namespace TechnicalAnalysis.Controllers
         [HttpPost]
         public async Task<IActionResult> Upload(List<IFormFile> files)
         {
-            if(files.FirstOrDefault().ContentType == "application/json")
+            if (files.FirstOrDefault().ContentType == "application/json")
             {
-                string fileContent = null;
-                using (var reader = new StreamReader(files.FirstOrDefault().OpenReadStream()))
+                foreach (var file in files)
                 {
-                    fileContent = reader.ReadToEnd();
+                    string fileContent = null;
+                    using (var reader = new StreamReader(file.OpenReadStream()))
+                    {
+                        fileContent = reader.ReadToEnd();
+                    }
+
+                    var result = JsonConvert.DeserializeObject<DigitalContractModel>(fileContent);
+                    SharedModels._digitalContractModels.Add(result);
                 }
-
-                var result = JsonConvert.DeserializeObject<DigitalContractModel>(fileContent);
-                SharedModels._digitalContractModels.Add(result);
-
                 return View("Uploaded");
             }
 
